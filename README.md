@@ -9,14 +9,14 @@ Cem Sinan Ozturk:  [Personal Github](https://github.com/cemsinano)
 ## Description:
 This package will take a dataset with a continuous reponse variable and various explanatory variables (either continuous, discrete, or categorical), and provide the user with several functions to bulid a linear regression model. 
 
-##Functions:  
-####Summary of Data: (input: X, y)    
+## Functions:  
+#### Summary of Data: (input: X, y)    
 This function will return a table containing various statistics from the provided dataset. These statistics include the mean, variance, quantile for continuous variables, mode, number of levels (for categorical data), etc. 
 
-####Model Fit: (input: X, y)  
+#### Model Fit: (input: X, y)  
 This function will return the model object containing the coefficients for the linear model, corresponding p-value, and confidence interval.
 
-####Residual Plot: (input: Model Object) 
+#### Residual Plot: (input: Model Object) 
 This function takes the calculated residuals from the model object and will display both the residuals by fitted values, and the QQ plot for the residuals.
 
 ## Ecosystem:
