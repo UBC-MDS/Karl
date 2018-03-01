@@ -1,8 +1,8 @@
 # LinearRegression.R
 # March 2018
 #
-# This script build a Logistic regression class to analyse data.
-# It supports a conyinuous response and several continuous features.
+# This script builds a Linear regression method to analyse data.
+# It supports a continuous response and several continuous features.
 #
 # Dependencies: 
 #
@@ -12,7 +12,7 @@
 
 
 ## Constructor
-# This function return a list object containing the weights, 
+# This function returns a list object containing the weights, 
 # fitted values, and residuals from fitting a linear regression 
 # of y on X.
 # 
@@ -21,7 +21,7 @@
 #   y: a numeric vector of same length containing the response
 #
 # Values: a list containing
-#   weights: the estimate of the parameters of the linear regression
+#   weights: the estimates of the parameters of the linear regression
 #   fitted: the fitted values
 #   residuals: the residuals.
 ##
