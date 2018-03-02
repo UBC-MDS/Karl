@@ -22,7 +22,8 @@ fit <- alpha + beta*X$X1
 res <- y - fit
 
 test_that("Testing LinearRegression for one continuous feature", {
-  expect_match
+  expect_match(typeof(model), 'list')
+  expect_match(names(model), c('weights', 'fitted', 'residuals'))
   expect_equal(model$weights$X1, beta)
   expect_equal(model$weights$intercept, alpha)
   expect_equal(model$fitted, fitted)
@@ -47,6 +48,8 @@ fit <- X_mat%*%beta
 res <- y - fit
 
 test_that("Testing LinearRegression for multi continuous features", {
+  expect_match(typeof(model), 'list')
+  expect_match(names(model), c('weights', 'fitted', 'residuals'))
   expect_equal(model$weights, beta)
   expect_equal(model$fitted, fit)
   expect_equal(model$residuals, res)
