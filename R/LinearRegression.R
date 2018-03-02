@@ -28,9 +28,3 @@
 LinearRegression <- function(X, y) {
   return(NULL)
 }
-
-## Residuals Plots
-plot_karl <- function(lm) {
-  return(NULL)
-}
-
