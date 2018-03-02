@@ -13,23 +13,28 @@
 # ggplot2 (package)
 #
 # Usage:
-#
+# library(Karl)
+# lm <- LinearRegression(X, y)
+# plot_karl(lm)
 
 ## Packages
 require(ggplot2)
 
 ## plot_karl
-# This function returns a list object containing the weights,
-# fitted values, and residuals from fitting a linear regression
-# of y on X.
+# This function is used to plot the linear model object from the LinearRegression function.
+# The linear model object is a list of lists that includes weights, fitted values, and residuals.
+# This function will return 3 types of plots, which include:
+#   -Residuals vs Fitted Plot
+#   -Normal Q-Q Plot
+#   -Fitted vs True Value Plot(s)
 #
 # Arguments:
-#   -lm: a list of lists containing:
+#   -lm object: a list of lists containing:
 #     -weights: the estimates of the parameters of the linear regression
 #     -fitted: the fitted values
 #     -residuals: the residuals.
 #
-# Output:
+# Value:
 #   -Residuals vs Fitted Plot
 #   -Normal Q-Q Plot
 #   -Fitted vs True Value Plot(s)

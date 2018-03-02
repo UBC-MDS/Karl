@@ -7,8 +7,8 @@ Ted Haley: [Personal Github](https://github.com/TedHaley)
 Cem Sinan Ozturk:  [Personal Github](https://github.com/cemsinano)  
 
 ## Description:
-This package will take a dataset with a continuous reponse variable and various explanatory variables (either continuous, discrete, or categorical), and provide the user with several functions to bulid a linear regression model. 
-
+This package will take a dataset with a continuous reponse variable and various continous explanatory variables, and provide the user with several functions to bulid a linear regression model. The fit of the regression can be tested using the diagnosis (residual) plots returned by the plotting function.
+ 
 ## Functions:  
 #### Summary of Data: (input: X, y)    
 This function will return a table containing various statistics from the provided dataset. These statistics include the mean, variance, quantile for continuous variables, mode, number of levels (for categorical data), etc. 
