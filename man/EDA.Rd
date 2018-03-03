@@ -15,6 +15,9 @@ A dataframe containing:
 \item{mean}{the mean for response(y) and features(X)}
 \item{variance}{the variance for response(y) and features(X)}
 \item{quantiles}{25-50-75 quantiles for response(y) and features(X)}
+\item{min}{ the minimum value for response (y) and features (X)}
+\item{max}{ the maximum value for response (y) and features (X)}
+
 }
 \author{Cem Sinan Ozturk}
 \seealso{Karl::LinearRegression, Karl::plot_karl}
@@ -37,10 +40,11 @@ EDA(X, y)
 
 results will be presented in a dataframe: 
 
-|       | mean  | variance | quantile25 | quantile50 | quantile75 |
-|-------|-------|----------|------------|------------|------------|
-|   y   |   ... |  ...     |    ...     |     ...    |     ...    | 
-|   X1  |   ... |  ...     |    ...     |     ...    |     ...    | 
-|   X2  |   ... |  ...     |    ...     |     ...    |     ...    | 
-|   X3  |   ... |  ...     |    ...     |     ...    |     ...    | 
+|       | mean  | variance | min | quantile25 | quantile50 | quantile75 | max |
+|-------|-------|----------|-----|------------|------------|------------|-----|
+|   y   |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... | 
+|   X1  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
+|   X2  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
+|   X3  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
 
+}

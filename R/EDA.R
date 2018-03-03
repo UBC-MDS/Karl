@@ -31,6 +31,8 @@ require(tidyr)
 #   mean: the mean for response (y) and features (X)
 #   variance: the variance for response (y) and features (X)
 #   quantiles: the 25-50-75 quantiles for response (y) and features (X)
+#   min: the minimum value for response (y) and features (X)
+#   max: the maximum value for response (y) and features (X)
 ##
 #   
 

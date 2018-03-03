@@ -37,6 +37,13 @@ y_var <- var(y)
 
 ## quantiles 
 
+# 0% (minimum) : 
+X1_min <- quantile(X$X1)[1]
+X2_min <- quantile(X$X2)[1]
+X3_min <- quantile(X$X3)[1]
+y_min <- quantile(y)[1]
+
+
 # 25%
 X1_quantile25 <- quantile(X$X1)[2]
 X2_quantile25 <- quantile(X$X2)[2]
@@ -45,21 +52,29 @@ y_quantile25 <- quantile(y)[2]
 
 # 50%
 X1_quantile50 <- quantile(X$X1)[3]
-X2_quantile25 <- quantile(X$X2)[3]
-X3_quantile25 <- quantile(X$X3)[3]
+X2_quantile50 <- quantile(X$X2)[3]
+X3_quantile50 <- quantile(X$X3)[3]
 y_quantile50 <- quantile(y)[3]
 
 # 75%
 X1_quantile75 <- quantile(X$X1)[4]
-X2_quantile25 <- quantile(X$X2)[4]
-X3_quantile25 <- quantile(X$X3)[4]
+X2_quantile75 <- quantile(X$X2)[4]
+X3_quantile75 <- quantile(X$X3)[4]
 y_quantile75 <- quantile(y)[4]
+
+# 100% (maximum) : 
+
+X1_max <- quantile(X$X1)[5]
+X2_max <- quantile(X$X2)[5]
+X3_max <- quantile(X$X3)[5]
+y_max <- quantile(y)[5]
+
 
 
 test_that("Testing EDA for multi continuous feature", {
   expect_match(typeof(summary), 'list') # type of a dataframe is seen as list in R
   expect_match(typeof(summary), 'data.frame') # dataframe's class is 'data.frame'
-  expect_match(colnames(summary), c('mean', 'variance', 'quantile25','quantile50','quantile75')) 
+  expect_match(colnames(summary), c('mean', 'variance', 'min', 'quantile25','quantile50','quantile75', 'max')) 
   
   expect_equal(summary$mean[1], y_mean)
   expect_equal(summary$mean[2], X1_mean)
@@ -70,11 +85,16 @@ test_that("Testing EDA for multi continuous feature", {
   expect_equal(summary$variance[2], X1_var)
   expect_equal(summary$variance[3], X2_var)
   expect_equal(summary$variance[4], X3_var)
-  
+
+  expect_equal(summary$min[1], y_min)
+  expect_equal(summary$min[2], X1_min)
+  expect_equal(summary$min[3], X2_min)
+  expect_equal(summary$min[4], X3_min)
+    
   expect_equal(summary$quantile25[1], y_quantile25)
   expect_equal(summary$quantile25[2], X1_quantile25)
-  expect_equal(summary$quantile25[3], X1_quantile25)
-  expect_equal(summary$quantile25[4], X1_quantile25)
+  expect_equal(summary$quantile25[3], X2_quantile25)
+  expect_equal(summary$quantile25[4], X3_quantile25)
   
   
   expect_equal(summary$quantile50[1], y_quantile50)
@@ -87,6 +107,11 @@ test_that("Testing EDA for multi continuous feature", {
   expect_equal(summary$quantile75[2], X1_quantile75)
   expect_equal(summary$quantile75[3], X2_quantile75)
   expect_equal(summary$quantile75[4], X3_quantile75)
+  
+  expect_equal(summary$max[1], y_max)
+  expect_equal(summary$max[2], X1_max)
+  expect_equal(summary$max[3], X2_max)
+  expect_equal(summary$max[4], X3_max)
   
 })
 
