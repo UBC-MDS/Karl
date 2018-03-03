@@ -4,7 +4,7 @@
 \description{
 This function returns a list object containing the weights,
 fitted values, and residuals from fitting a linear regression
-of y on X. 
+of y on X.
 
 It supports a continuous response and several continuous features.
 }
