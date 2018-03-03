@@ -24,10 +24,10 @@ summary <- EDA(X, y)
 # `mean`, `var` and `quantile` are built-in R functions that I will compare results.
 
 # mean values:
-X1_var <- mean(X$X1)
-X2_var <- mean(X$X2)
-X3_var <- mean(X$X3)
-y_var <- mean(y)
+X1_mean <- mean(X$X1)
+X2_mean <- mean(X$X2)
+X3_mean <- mean(X$X3)
+y_mean <- mean(y)
 
 # variance values:
 X1_var <- var(X$X1)
