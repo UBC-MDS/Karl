@@ -16,12 +16,12 @@ test_that("plot_karl(): returns various plots using the linear model object", {
     ggtitle("Sepal Length-Width")
 
   # expected inputs:
-  expect_match(typeof(lm), "list")
-  expect_match(names(lm), c("coefficients", "fitted", "residuals"))
+  expect_match(typeof(lm), "list") # checks to see if the linear model is the right type
+  expect_match(names(lm), c("coefficients", "fitted", "residuals")) # checks to see if all the right content are in the linear model object.
 
   # expected outputs:
-  expect_match(typeof(scatter), "list")
-  expect_match(class(scatter), c("gg", "ggplot"))
+  expect_match(typeof(scatter), "list") # Checks to see if the plotting type is correct
+  expect_match(class(scatter), c("gg", "ggplot")) # Checks to see if the plot is the right class.
 
   # expected errors:
   # expect_error(plot_karl("something"), "Error: ggplot2 doesn't know how to deal with data of class character")
