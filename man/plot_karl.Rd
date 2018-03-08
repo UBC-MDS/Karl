@@ -37,6 +37,7 @@ This function will return 3 types of plots, which include:
 -Fitted vs True Value Plot(s)
 }
 
+
 \author{Teddy Haley}
 \seealso{LinearRegression, EDA}
 

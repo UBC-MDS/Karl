@@ -9,7 +9,7 @@
 # Usage: 
 
 ## Packages
-
+library(matlib)
 
 ## Constructor
 # This function returns a list object containing the weights, 
@@ -26,5 +26,17 @@
 #   residuals: the residuals.
 ##
 LinearRegression <- function(X, y) {
-  return(NULL)
+  # Convert the data frame in a matrix
+  X_mat <- as.matrix(X)
+  
+  # Compute the OLS estimator
+  beta <- inv(t(X_mat)%*%X_mat)%*%t(X_mat)%*%y
+  
+  # Calculate the fitted values
+  fit <- X_mat%*%beta
+  
+  # Calculate the residuals
+  res <- y - fit
+  
+  return(list("weights"=beta, "fitted"=fit, "residuals"=res))
 }
