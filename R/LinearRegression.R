@@ -26,8 +26,13 @@ library(tidyverse)
 #   residuals: the residuals.
 ##
 LinearRegression <- function(X, y) {
+  # Check the type of the features and select the numeric ones
+  cols <- (sapply(X, typeof) %in% c('double', 'integer', 'numeric'))
+  X_mat <- X %>% select(names(X)[cols])
+  if (sum(cols) > 0) {stop("You need at least one continuous features")}
+  
   # Add an intercept column and convert the data frame in a matrix
-  X_mat <- cbind("intercept"=1, X)
+  X_mat <- cbind("intercept"=1, X_mat)
   X_mat <- as.matrix(X_mat)
   
   # Set hyperparameters
