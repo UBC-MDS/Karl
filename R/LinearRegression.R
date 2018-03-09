@@ -8,8 +8,8 @@
 #
 # Usage: 
 
-## Packages
-library(matlib)
+## Packages:
+library(tidyverse)
 
 ## Constructor
 # This function returns a list object containing the weights, 
@@ -26,17 +26,40 @@ library(matlib)
 #   residuals: the residuals.
 ##
 LinearRegression <- function(X, y) {
-  # Convert the data frame in a matrix
-  X_mat <- as.matrix(X)
+  # Check the type of the features and select the numeric ones
+  cols <- (sapply(X, typeof) %in% c('double', 'integer', 'numeric'))
+  X_mat <- X %>% select(names(X)[cols])
+  if (sum(cols) > 0) {stop("You need at least one continuous features")}
   
-  # Compute the OLS estimator
-  beta <- inv(t(X_mat)%*%X_mat)%*%t(X_mat)%*%y
+  # Add an intercept column and convert the data frame in a matrix
+  X_mat <- cbind("intercept"=1, X_mat)
+  X_mat <- as.matrix(X_mat)
   
+  # Set hyperparameters
+  alpha <- 0.001
+  n_iter <- 1000000
+  n <- nrow(X_mat)
+  d <- ncol(X_mat)
+  
+  # The gradient of the squared error
+  ols_grad <- function(w) {t(X_mat)%*%(X_mat%*%weights - y)}
+  
+  # A norm function for Frobenius
+  norm <- function(x) {sum(abs(x))}
+
+  # Update the weights using gradient method
+  weights <- rep(0, times = d); i <- 0; grad <- 1
+  while(i < n_iter & norm(grad) > 1e-7) {
+    grad <- ols_grad(weights); i <- i + 1
+    weights <- weights - alpha*grad
+  }
+
   # Calculate the fitted values
-  fit <- X_mat%*%beta
+  fit <- X_mat%*%weights
   
   # Calculate the residuals
   res <- y - fit
   
-  return(list("weights"=beta, "fitted"=fit, "residuals"=res))
+  return(list("weights"=weights, "fitted"=fit, "residuals"=res))
 }
+
