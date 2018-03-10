@@ -1,0 +1,99 @@
+---
+title: "Intro to Karl"
+author: "Karl Team"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Intro to Karl}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Introduction to Karl
+
+`Karl` is a Linear Regression tool.
+
+## Description:
+
+This package will take a dataset with a continuous reponse variable and various continous explanatory variables, and provide the user with several functions to bulid a linear regression model. The fit of the regression can be tested using the diagnosis (residual) plots returned by the plotting function.
+ 
+## Functions: 
+
+#### Summary of Data: `EDA(X, y)`   
+This function will return a table containing various statistics from the provided dataset. These statistics include the mean, variance, minimum, maximum and quantile (25, 50 and 75) values for continuous variables.
+
+Arguments:
+
+  - X: a dataframe containing continuous features
+  - y: a numeric vector of same length containing the response
+
+Values: a dataframe containing 
+
+  - mean: the mean for response (y) and features (X)
+  - variance: the variance for response (y) and features (X)
+  - quantiles: the 25-50-75 quantiles for response (y) and features (X)
+  - min: the minimum value for response (y) and features (X)
+  - max: the maximum value for response (y) and features (X)
+  
+Usage: 
+
+```
+library(Karl)
+EDA(X,y)
+```
+
+#### Model Fit: `LinearRegression(X, y)` 
+
+ This function returns a list object containing the weights, fitted values, and residuals from fitting a linear regression  of y on X.
+ 
+Arguments:
+ 
+   - X: a dataframe containing continuous features
+   - y: a numeric vector of same length containing the response
+
+Values: a list containing
+
+  - weights: the estimates of the parameters of the linear regression
+  - fitted: the fitted values
+  - residuals: the residuals
+
+#### Residual Plot: `plot_karl((input: Model Object))` 
+
+This function is used to plot the linear model object from the LinearRegression function. The linear model object is a list of lists that includes weights, fitted values, and residuals. This function will return 3 types of plots, which include:
+
+  -Residuals vs Fitted Plot
+  -Normal Q-Q Plot
+  -Fitted vs True Value Plot(s)
+
+Arguments:
+
+  -lm object: a list of lists containing:
+  -weights: the estimates of the parameters of the linear regression
+  -fitted: the fitted values
+  -residuals: the residuals.
+
+Value:
+
+  -Residuals vs Fitted Plot
+  -Normal Q-Q Plot
+  -Fitted vs True Value Plot(s)
+  
+Usage:
+
+```
+library(Karl)
+lm <- LinearRegression(X, y)
+plot_karl(lm)
+```
+
+
+
+
