@@ -35,7 +35,29 @@ require(tidyr)
 #   max: the maximum value for response (y) and features (X)
 ##
 #   
+|   _    | mean  | variance | min | quantile25 | quantile50 | quantile75 | max |
+  |-------|-------|----------|-----|------------|------------|------------|-----|
+  |   y   |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... | 
+  |   X1  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
+  |   X2  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
+  |   X3  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
 
 EDA <- function(X, y) {
-  return(NULL)
+  allData <- cbind(y, X)
+  summary <- do.call(data.frame, 
+                     list(mean = apply(allData, 2, mean),
+                          variance = apply(allData, 2, var),
+                          min = apply(allData, 2, min),
+                          quantile25 = apply(allData, 2,FUN = quantile, probs = 0.25),
+                          median = apply(allData, 2, median),
+                          quantile75 = apply(allData, 2,FUN = quantile, probs = 0.75),
+                          max = apply(allData, 2, max)))
+ return(summary)
 }
+
+
+### reference for the do.call structure used in function :
+### https://stackoverflow.com/questions/20997380/creating-a-summary-statistical-table-from-a-data-frame
+
+
+
