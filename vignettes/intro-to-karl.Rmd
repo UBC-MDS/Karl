@@ -65,26 +65,33 @@ Values: a list containing
   - fitted: the fitted values
   - residuals: the residuals
 
+Usage:
+
+```
+library(Karl)
+X <- iris$Sepal.Length
+y <– iris$Sepal.Width
+LinearRegression(X, y)
+```
+
 #### Residual Plot: `plot_karl((input: Model Object))` 
 
-This function is used to plot the linear model object from the LinearRegression function. The linear model object is a list of lists that includes weights, fitted values, and residuals. This function will return 3 types of plots, which include:
+This function is used to plot the linear model object from the LinearRegression function. The linear model object is a list of lists that includes weights, fitted values, and residuals. This function will return 2 types of plots, which include:
 
-  -Residuals vs Fitted Plot
-  -Normal Q-Q Plot
-  -Fitted vs True Value Plot(s)
+  - Residuals vs Fitted Plot
+  - Normal Q-Q Plot
 
 Arguments:
 
-  -lm object: a list of lists containing:
-  -weights: the estimates of the parameters of the linear regression
-  -fitted: the fitted values
-  -residuals: the residuals.
+  - lm object: a list of lists containing:
+  	- weights: the estimates of the parameters of the linear regression
+  	- fitted: the fitted values
+  	- residuals: the residuals.
 
 Value:
 
-  -Residuals vs Fitted Plot
-  -Normal Q-Q Plot
-  -Fitted vs True Value Plot(s)
+  - Residuals vs Fitted Plot
+  - Normal Q-Q Plot
   
 Usage:
 
@@ -93,6 +100,8 @@ library(Karl)
 lm <- LinearRegression(X, y)
 plot_karl(lm)
 ```
+
+
 
 
 

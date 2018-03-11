@@ -13,7 +13,6 @@ plot_karl(lm)}
 \arguments{
 linear model object: a list of lists containing:
 
-\item{weights}{the estimates of the parameters of the linear regression,}
 \item{fitted}{the fitted values,}
 \item{residuals}{the residuals.}
 }
@@ -25,9 +24,7 @@ This function will return 3 types of plots, which include:
 
    -Residuals vs Fitted Plot
 
-   -Normal Q-Q Plot
-
-   -Fitted vs True Value Plot(s)}
+   -Normal Q-Q Plot}
 
 \value{
 -Residuals vs Fitted Plot
