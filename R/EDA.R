@@ -58,7 +58,7 @@ EDA <- function(X, y) {
                           variance = apply(allData, 2, var),
                           min = apply(allData, 2, min),
                           quantile25 = apply(allData, 2,FUN = quantile, probs = 0.25),
-                          median = apply(allData, 2, median),
+                          quantile50 = apply(allData, 2, median),
                           quantile75 = apply(allData, 2,FUN = quantile, probs = 0.75),
                           max = apply(allData, 2, max)))
  return(summary)
