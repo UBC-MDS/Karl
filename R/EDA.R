@@ -34,13 +34,14 @@ require(tidyr)
 #   min: the minimum value for response (y) and features (X)
 #   max: the maximum value for response (y) and features (X)
 ##
-#   
-|   _    | mean  | variance | min | quantile25 | quantile50 | quantile75 | max |
-  |-------|-------|----------|-----|------------|------------|------------|-----|
-  |   y   |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... | 
-  |   X1  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
-  |   X2  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
-  |   X3  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
+# Expected Output:  
+#
+#  |   _    | mean  | variance | min | quantile25 | quantile50 | quantile75 | max |
+#  |-------|-------|----------|-----|------------|------------|------------|-----|
+#  |   y   |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... | 
+#  |   X1  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
+#  |   X2  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
+#  |   X3  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
 
 EDA <- function(X, y) {
   # Check the type of the features and select the numeric ones: 
