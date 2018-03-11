@@ -43,7 +43,15 @@ require(tidyr)
   |   X3  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
 
 EDA <- function(X, y) {
+  # Check the type of the features and select the numeric ones: 
+  cols <- (sapply(X, typeof) %in% c('double', 'integer', 'numeric'))
+  X <- X %>% select(names(X)[cols])
+  if (sum(cols) > 0) {stop("You do not have any numerical feature to summarize")}
+  
+  # bind the numerical features and response variable to summarize: 
   allData <- cbind(y, X)
+  
+  # make a summary data.frame:
   summary <- do.call(data.frame, 
                      list(mean = apply(allData, 2, mean),
                           variance = apply(allData, 2, var),

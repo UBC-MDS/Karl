@@ -11,7 +11,7 @@ library(tidyr)
 # Generate small data to test our function
 
 set.seed(4)
-X <- data.frame('ones' = rep.int(1, times = length(y)), 
+X <- data.frame('ones' = rep.int(1, times = length(10)), 
                 'X1' = rnorm(10), 
                 'X2' = rnorm(10),
                 'X3' = rnorm(10))
@@ -72,8 +72,15 @@ y_max <- quantile(y)[5]
 
 
 test_that("Testing EDA for multi continuous feature", {
+  
+  # input type:
+  expect_match(typeof(X), 'list') # type of a dataframe is seen as list in R
+  expect_match(class(X), 'data.frame') # dataframe's class is 'data.frame'
+  expect_match(typeof(y), 'list') # type of a dataframe is seen as list in R
+
+  # output type and shape:
   expect_match(typeof(summary), 'list') # type of a dataframe is seen as list in R
-  expect_match(typeof(summary), 'data.frame') # dataframe's class is 'data.frame'
+  expect_match(class(summary), 'data.frame') # dataframe's class is 'data.frame'
   expect_match(colnames(summary), c('mean', 'variance', 'min', 'quantile25','quantile50','quantile75', 'max')) 
   
   expect_equal(summary$mean[1], y_mean)
