@@ -3,6 +3,8 @@
 
 ## Packages
 library(matlib)
+library(ggplot2)
+library(gridExtra)
 
 # Sample linear model
 set.seed(4)
