@@ -7,7 +7,7 @@
 # various continuous explanatory variables 
 # 
 # 
-# Dependencies: tidyr (package)
+# Dependencies: tidyverse (package)
 #
 # Usage:
 # 
@@ -17,7 +17,7 @@
 #
 
 ## Packages
-require(tidyr)
+require(tidyverse)
 
 ## EDA
 # This function returns a dataframe containing mean,
@@ -47,7 +47,7 @@ EDA <- function(X, y) {
   # Check the type of the features and select the numeric ones: 
   cols <- (sapply(X, typeof) %in% c('double', 'integer', 'numeric'))
   X <- X %>% select(names(X)[cols])
-  if (sum(cols) > 0) {stop("You do not have any numerical feature to summarize")}
+  if (sum(cols) == 0) {stop("You do not have any numerical feature to summarize")}
   
   # bind the numerical features and response variable to summarize: 
   allData <- cbind(y, X)
