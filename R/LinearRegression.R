@@ -30,7 +30,10 @@ LinearRegression <- function(X, y) {
   cols <- (sapply(X, typeof) %in% c('double', 'integer', 'numeric'))
   X_mat <- X %>% select(names(X)[cols])
   if (sum(cols) == 0) {stop("You need at least one continuous features")}
-
+  
+  # Check for missing values
+  if (any(is.na(X_mat))) {stop("Some of your numeric features contain missing values. Please deal with them (remove, impute...) before using this function.")}
+  
   # Add an intercept column and convert the data frame in a matrix
   X_mat <- cbind("intercept"=1, X_mat)
   X_mat <- as.matrix(X_mat)
