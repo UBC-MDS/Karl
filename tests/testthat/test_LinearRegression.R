@@ -25,10 +25,10 @@ test_that("Testing LinearRegression for one continuous feature", {
   expect_match(typeof(model), 'list')
   expect_equal(names(model), c('weights', 'fitted', 'residuals'))
 
-  expect_equal(round(model$weights$X1, 5), round(beta, 5))
-  expect_equal(round(model$weights$intercept, 5), round(alpha, 5))
-  expect_equal(round(model$fitted, 5), round(fitted, 5))
-  expect_equal(round(model$residuals, 5), round, 5)(res, 5))
+  expect_equal(model$weights['X1',][[1]], beta, tolerance = 1e-5)
+  expect_equal(model$weights['intercept',][[1]], alpha, tolerance = 1e-5)
+  expect_equal(c(model$fitted), fit, tolerance = 1e-5)
+  expect_equal(c(model$residuals), res, tolerance = 1e-5)
 })
 
 ### Test simple linear regression with duplicate observation
@@ -52,10 +52,10 @@ test_that("Testing LinearRegression for duplicate observations", {
   expect_equal(length(model$fitted), 10)
   expect_equal(length(model$residuals), 10)
 
-  expect_equal(round(model$weights$X1, 5), round(beta, 5))
-  expect_equal(round(model$weights$intercept, 5), round(alpha, 5))
-  expect_equal(round(model$fitted, 5), round(fitted, 5))
-  expect_equal(round(model$residuals, 5), round(res, 5))
+  expect_equal(model$weights['X1',][[1]], beta, tolerance = 1e-5)
+  expect_equal(model$weights['intercept',][[1]], alpha, tolerance = 1e-5)
+  expect_equal(c(model$fitted), fit, tolerance = 1e-5)
+  expect_equal(c(model$residuals), res, tolerance = 1e-5)
 })
 
 
@@ -65,13 +65,17 @@ test_that("Testing LinearRegression for duplicate observations", {
 set.seed(4)
 X <- data.frame('X1' = rnorm(10), 'X2' = rnorm(10), 'X3' = rnorm(10),
                 'char' = rep('a', 10))
+X$char <- as.character(X$char)
 y <- X$X1 + X$X2 + X$X3 + rnorm(10)
 
 # Fit a linear regression on the data
 model <- LinearRegression(X, y)
 
 # True values
-X_mat <- as.matrix(X)
+cols <- (sapply(X, typeof) %in% c('double', 'integer', 'numeric'))
+X_mat <- X %>% select(names(X)[cols])
+X_mat <- cbind("intercept"=1, X_mat)
+X_mat <- as.matrix(X_mat)
 beta <- inv(t(X_mat)%*%X_mat)%*%t(X_mat)%*%y
 fit <- X_mat%*%beta
 res <- y - fit
@@ -84,9 +88,24 @@ test_that("Testing LinearRegression for multi continuous features", {
   expect_equal(length(model$fitted), 10)
   expect_equal(length(model$residuals), 10)
 
-  expect_equal(round(model$weights, 5), round(beta, 5))
-  expect_equal(round(model$fitted, 5), round(fit, 5))
-  expect_equal(round(model$residuals, 5), round(res, 5))
+  expect_equal(c(model$weights), c(beta), tolerance = 1e-5)
+  expect_equal(c(model$fitted), c(fit), tolerance = 1e-5)
+  expect_equal(c(model$residuals), c(res), tolerance = 1e-5)
+})
+
+
+### Test multi-linear regression with missing values
+# Generate small data to test our function
+set.seed(4)
+X <- data.frame('X1' = rnorm(10), 'X2' = rnorm(10), 'X3' = rnorm(10))
+y <- X$X1 + X$X2 + X$X3 + rnorm(10)
+
+# Add some missing values
+X$X1[3] <- NaN
+X$X3[5] <- NaN
+
+test_that("Missing values should return an error", {
+  expect_error(LinearRegression(X, y))
 })
 
 
