@@ -16,6 +16,38 @@ X <- data.frame('X1' = rnorm(10),
                 'X3' = rnorm(10))
 y <- X$X1 + X$X2 + X$X3 + rnorm(10)
 
+EDA <- function(X, y) {
+  
+  #if the X and y are empty then return error:
+  
+  if(length(X) = 0) stop("There are no values in features")
+  
+  if(length(y) = 0) stop("There are no values in response")
+  
+  # Test the type of the input:
+  if(class(X)!= 'data.frame') stop("The features(X) doesn't have the right type. It must be data.frame")
+  
+  
+  # Check the type of the features and select the numeric ones: 
+  cols <- (sapply(X, typeof) %in% c('double', 'integer', 'numeric'))
+  X <- X %>% select(names(X)[cols])
+  if (sum(cols) == 0) {stop("You do not have any numerical feature to summarize")}
+  
+  # bind the numerical features and response variable to summarize: 
+  allData <- cbind(y, X)
+  
+  # make a summary data.frame:
+  summary <- do.call(data.frame, 
+                     list(mean = apply(allData, 2, mean),
+                          variance = apply(allData, 2, var),
+                          min = apply(allData, 2, min),
+                          quantile25 = apply(allData, 2,FUN = quantile, probs = 0.25),
+                          quantile50 = apply(allData, 2, median),
+                          quantile75 = apply(allData, 2,FUN = quantile, probs = 0.75),
+                          max = apply(allData, 2, max)))
+  return(summary)
+}
+
 # get EDA summary for the data
 summary <- EDA(X, y)
 
@@ -76,6 +108,7 @@ test_that("Testing EDA for multi continuous feature", {
   expect_match(typeof(X), 'list') # type of a dataframe is seen as list in R
   expect_match(class(X), 'data.frame') # dataframe's class is 'data.frame'
   
+  
   # output type and shape:
   expect_match(typeof(summary), 'list') # type of a dataframe is seen as list in R
   expect_match(class(summary), 'data.frame') # dataframe's class is 'data.frame'
@@ -117,6 +150,16 @@ test_that("Testing EDA for multi continuous feature", {
   expect_equal(summary$max[2], X1_max)
   expect_equal(summary$max[3], X2_max)
   expect_equal(summary$max[4], X3_max)
+  
+})
+
+
+test_that("Test  exception non data.frame X", {
+  # input type:
+  # assign an integer to X: 
+  X <- 1
+  
+  expect_error(EDA(X,y)) # test when X is not a data.frame
   
 })
 
