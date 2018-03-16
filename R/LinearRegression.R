@@ -4,18 +4,18 @@
 # This script builds a Linear regression method to analyse data.
 # It supports a continuous response and several continuous features.
 #
-# Dependencies: 
+# Dependencies:
 #
-# Usage: 
+# Usage:
 
 ## Packages:
 library(tidyverse)
 
 ## Constructor
-# This function returns a list object containing the weights, 
-# fitted values, and residuals from fitting a linear regression 
+# This function returns a list object containing the weights,
+# fitted values, and residuals from fitting a linear regression
 # of y on X.
-# 
+#
 # Arguments:
 #   X: a dataframe containing continuous features
 #   y: a numeric vector of same length containing the response
@@ -29,21 +29,21 @@ LinearRegression <- function(X, y) {
   # Check the type of the features and select the numeric ones
   cols <- (sapply(X, typeof) %in% c('double', 'integer', 'numeric'))
   X_mat <- X %>% select(names(X)[cols])
-  if (sum(cols) > 0) {stop("You need at least one continuous features")}
-  
+  if (sum(cols) == 0) {stop("You need at least one continuous features")}
+
   # Add an intercept column and convert the data frame in a matrix
   X_mat <- cbind("intercept"=1, X_mat)
   X_mat <- as.matrix(X_mat)
-  
+
   # Set hyperparameters
   alpha <- 0.001
   n_iter <- 1000000
   n <- nrow(X_mat)
   d <- ncol(X_mat)
-  
+
   # The gradient of the squared error
   ols_grad <- function(w) {t(X_mat)%*%(X_mat%*%weights - y)}
-  
+
   # A norm function for Frobenius
   norm <- function(x) {sum(abs(x))}
 
@@ -56,10 +56,10 @@ LinearRegression <- function(X, y) {
 
   # Calculate the fitted values
   fit <- X_mat%*%weights
-  
+
   # Calculate the residuals
   res <- y - fit
-  
+
   return(list("weights"=weights, "fitted"=fit, "residuals"=res))
 }
 
