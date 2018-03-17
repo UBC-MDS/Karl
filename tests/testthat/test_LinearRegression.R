@@ -4,7 +4,7 @@
 # This script test the methods from the LinearRegression.R script.
 
 ## Packages
-library(matlib)
+require(matlib)
 
 ### Test simple linear regression for a continuous feature
 # Generate small data to test our function

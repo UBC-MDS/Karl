@@ -4,7 +4,7 @@
 # This script tests the function from EDA.R.
 
 ## Packages
-library(tidyverse)
+require(tidyverse)
 
 ### Test EDA(explanatory data analysis)
 ## for multiple continuous features(X with three features) and a continous response(y)

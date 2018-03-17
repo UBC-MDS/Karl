@@ -9,7 +9,7 @@
 # Usage:
 
 ## Packages:
-library(tidyverse)
+require(tidyverse)
 
 ## Constructor
 # This function returns a list object containing the weights,
