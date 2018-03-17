@@ -1,4 +1,6 @@
-exportPattern("^[[:alpha:]]+")
+export(EDA)
+export(LinearRegression)
+export(plot_karl)
 
 import(MASS)
 import(matlib) 
