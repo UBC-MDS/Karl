@@ -21,4 +21,3 @@ A list containing:
 }
 \author{Maud Boucherit}
 \seealso{Karl::eda, Karl::plot_karl}
-\examples{...}
