@@ -7,7 +7,7 @@
 # various continuous explanatory variables 
 # 
 # 
-# Dependencies: tidyr (package)
+# Dependencies: tidyverse (package)
 #
 # Usage:
 # 
@@ -17,7 +17,7 @@
 #
 
 ## Packages
-require(tidyr)
+require(tidyverse)
 
 ## EDA
 # This function returns a dataframe containing mean,
@@ -44,10 +44,18 @@ require(tidyr)
 #  |   X3  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
 
 EDA <- function(X, y) {
+ 
+   #if the X and y are empty then return error:
+  if(length(X) = 0) stop("There are no values in features")
+  if(length(y) = 0) stop("There are no values in response")
+
+  # Test the type of the input:
+  if(class(X)!= 'data.frame') stop("The features(X) doesn't have the right type. It must be data.frame")
+  
   # Check the type of the features and select the numeric ones: 
   cols <- (sapply(X, typeof) %in% c('double', 'integer', 'numeric'))
   X <- X %>% select(names(X)[cols])
-  if (sum(cols) > 0) {stop("You do not have any numerical feature to summarize")}
+  if (sum(cols) == 0) {stop("You do not have any numerical feature to summarize")}
   
   # bind the numerical features and response variable to summarize: 
   allData <- cbind(y, X)
@@ -62,8 +70,8 @@ EDA <- function(X, y) {
                           quantile75 = apply(allData, 2,FUN = quantile, probs = 0.75),
                           max = apply(allData, 2, max)))
  return(summary)
-}
 
+}
 
 ### reference for the do.call structure used in function :
 ### https://stackoverflow.com/questions/20997380/creating-a-summary-statistical-table-from-a-data-frame
