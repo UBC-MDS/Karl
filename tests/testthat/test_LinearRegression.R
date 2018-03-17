@@ -5,6 +5,7 @@
 
 ## Packages
 require(matlib)
+require(MASS)
 
 ### Test simple linear regression for a continuous feature
 # Generate small data to test our function
@@ -73,10 +74,10 @@ model <- LinearRegression(X, y)
 
 # True values
 cols <- (sapply(X, typeof) %in% c('double', 'integer', 'numeric'))
-X_mat <- X %>% select(names(X)[cols])
+X_mat <- X %>% dplyr::select(names(X)[cols])
 X_mat <- cbind("intercept"=1, X_mat)
 X_mat <- as.matrix(X_mat)
-beta <- inv(t(X_mat)%*%X_mat)%*%t(X_mat)%*%y
+beta <- ginv(t(X_mat)%*%X_mat)%*%t(X_mat)%*%y
 fit <- X_mat%*%beta
 res <- y - fit
 
@@ -116,3 +117,4 @@ X <- data.frame('char' = rep('a', 10))
 test_that("No numeric feature should return an error", {
   expect_error(LinearRegression(X, y))
 })
+

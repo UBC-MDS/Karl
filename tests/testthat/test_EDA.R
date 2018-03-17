@@ -16,38 +16,6 @@ X <- data.frame('X1' = rnorm(10),
                 'X3' = rnorm(10))
 y <- X$X1 + X$X2 + X$X3 + rnorm(10)
 
-EDA <- function(X, y) {
-
-  #if the X and y are empty then return error:
-
-  if(length(X) == 0) stop("There are no values in features")
-
-  if(length(y) == 0) stop("There are no values in response")
-
-  # Test the type of the input:
-  if(class(X)!= 'data.frame') stop("The features(X) doesn't have the right type. It must be data.frame")
-
-
-  # Check the type of the features and select the numeric ones:
-  cols <- (sapply(X, typeof) %in% c('double', 'integer', 'numeric'))
-  X <- X %>% select(names(X)[cols])
-  if (sum(cols) == 0) {stop("You do not have any numerical feature to summarize")}
-
-  # bind the numerical features and response variable to summarize:
-  allData <- cbind(y, X)
-
-  # make a summary data.frame:
-  summary <- do.call(data.frame,
-                     list(mean = apply(allData, 2, mean),
-                          variance = apply(allData, 2, var),
-                          min = apply(allData, 2, min),
-                          quantile25 = apply(allData, 2,FUN = quantile, probs = 0.25),
-                          quantile50 = apply(allData, 2, median),
-                          quantile75 = apply(allData, 2,FUN = quantile, probs = 0.75),
-                          max = apply(allData, 2, max)))
-  return(summary)
-}
-
 # get EDA summary for the data
 summary <- EDA(X, y)
 
@@ -162,3 +130,4 @@ test_that("Test  exception non data.frame X", {
   expect_error(EDA(X,y)) # test when X is not a data.frame
 
 })
+

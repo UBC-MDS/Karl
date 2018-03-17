@@ -40,3 +40,4 @@ test_that("plot_karl(): returns various plots using the linear model object", {
   expect_false(plots$respect) # Respective to eachother the outputs.
 
 })
+

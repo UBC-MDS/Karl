@@ -29,7 +29,7 @@ require(dplyr)
 LinearRegression <- function(X, y) {
   # Check the type of the features and select the numeric ones
   cols <- (sapply(X, typeof) %in% c('double', 'integer', 'numeric'))
-  X_mat <- X %>% select(names(X)[cols])
+  X_mat <- X %>% dplyr::select(names(X)[cols])
   if (sum(cols) == 0) {stop("You need at least one continuous features")}
   
   # Check for missing values
