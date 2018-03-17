@@ -4,13 +4,13 @@
 # This script contains a function producing an EDA (explanatory data analysis) summary of the data.
 #
 # The dataset with a continuous response variable and
-# various continuous explanatory variables 
-# 
-# 
+# various continuous explanatory variables
+#
+#
 # Dependencies: tidyverse (package)
 #
 # Usage:
-# 
+#
 # library(Karl)
 #
 # EDA(X,y)
@@ -27,41 +27,41 @@ require(tidyverse)
 #   X: a dataframe containing continuous features
 #   y: a numeric vector of same length containing the response
 #
-# Values: a dataframe containing 
+# Values: a dataframe containing
 #   mean: the mean for response (y) and features (X)
 #   variance: the variance for response (y) and features (X)
 #   quantiles: the 25-50-75 quantiles for response (y) and features (X)
 #   min: the minimum value for response (y) and features (X)
 #   max: the maximum value for response (y) and features (X)
 ##
-# Expected Output:  
+# Expected Output:
 #
 #  |   _    | mean  | variance | min | quantile25 | quantile50 | quantile75 | max |
 #  |-------|-------|----------|-----|------------|------------|------------|-----|
-#  |   y   |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... | 
+#  |   y   |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
 #  |   X1  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
 #  |   X2  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
 #  |   X3  |   ... |  ...     | ... |    ...     |     ...    |     ...    | ... |
 
 EDA <- function(X, y) {
- 
+
    #if the X and y are empty then return error:
-  if(length(X) = 0) stop("There are no values in features")
-  if(length(y) = 0) stop("There are no values in response")
+  if(length(X) == 0) stop("There are no values in features")
+  if(length(y) == 0) stop("There are no values in response")
 
   # Test the type of the input:
   if(class(X)!= 'data.frame') stop("The features(X) doesn't have the right type. It must be data.frame")
-  
-  # Check the type of the features and select the numeric ones: 
+
+  # Check the type of the features and select the numeric ones:
   cols <- (sapply(X, typeof) %in% c('double', 'integer', 'numeric'))
   X <- X %>% select(names(X)[cols])
   if (sum(cols) == 0) {stop("You do not have any numerical feature to summarize")}
-  
-  # bind the numerical features and response variable to summarize: 
+
+  # bind the numerical features and response variable to summarize:
   allData <- cbind(y, X)
-  
+
   # make a summary data.frame:
-  summary <- do.call(data.frame, 
+  summary <- do.call(data.frame,
                      list(mean = apply(allData, 2, mean),
                           variance = apply(allData, 2, var),
                           min = apply(allData, 2, min),
@@ -75,6 +75,3 @@ EDA <- function(X, y) {
 
 ### reference for the do.call structure used in function :
 ### https://stackoverflow.com/questions/20997380/creating-a-summary-statistical-table-from-a-data-frame
-
-
-
