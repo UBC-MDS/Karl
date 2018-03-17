@@ -2,10 +2,10 @@
 # March 2018
 
 ## Packages
-library(testthat)
-library(matlib)
-library(ggplot2)
-library(gridExtra)
+require(testthat)
+require(matlib)
+require(ggplot2)
+require(gridExtra)
 
 # Generate small data to test our function
 set.seed(4)
@@ -40,3 +40,4 @@ test_that("plot_karl(): returns various plots using the linear model object", {
   expect_false(plots$respect) # Respective to eachother the outputs.
 
 })
+
