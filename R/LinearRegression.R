@@ -10,6 +10,7 @@
 
 ## Packages:
 require(tidyverse)
+require(dplyr)
 
 ## Constructor
 # This function returns a list object containing the weights,
