@@ -38,16 +38,6 @@ This function will return 3 types of plots, which include:
 \author{Teddy Haley}
 \seealso{LinearRegression, EDA}
 
-\examples{
-library(Karl)
-
-X <- iris$Sepal.Length
-y <- iris$Petal.Width
-
-lm <- LinearRegression(X, y)
-
-plot_karl(lm)
-}
 \keyword{plot}
 
 # To fill the documentation,

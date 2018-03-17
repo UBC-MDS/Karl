@@ -1,4 +1,10 @@
 library(testthat)
 library(Karl)
+library(ggplot2)
+library(gridExtra)
+library(matlib)
+library(MASS)
+library(gridExtra)
+library(dplyr)
 
 test_check("Karl")
