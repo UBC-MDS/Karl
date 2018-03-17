@@ -11,7 +11,7 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/UBC-MDS/Karl
 Depends:
-  R (>= 3.4.2),MASS,matlib, ggplot2, dplyr, gridExtra
+  R (>= 3.4.2),MASS, matlib, ggplot2, dplyr, gridExtra
 Suggests: testthat,
     knitr,
     rmarkdown

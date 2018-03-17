@@ -1,1 +1,7 @@
 exportPattern("^[[:alpha:]]+")
+
+import(MASS)
+import(matlib) 
+import(ggplot2)
+import(dplyr) 
+import(gridExtra)
