@@ -39,13 +39,15 @@ LinearRegression <- function(X, y) {
   X_mat <- as.matrix(X_mat)
 
   # Set hyperparameters
-  alpha <- 0.001
+  alpha <- 0.0001
   n_iter <- 1000000
   n <- nrow(X_mat)
   d <- ncol(X_mat)
 
   # The gradient of the squared error
-  ols_grad <- function(w) {t(X_mat)%*%(X_mat%*%weights - y)}
+
+  ols_grad <- function(w) {t(X_mat)%*%(X_mat%*%w - y)}
+  
 
   # A norm function for Frobenius
   norm <- function(x) {sum(abs(x))}
