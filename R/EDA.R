@@ -73,7 +73,6 @@ EDA <- function(X, y) {
 
 }
 
-
 ### reference for the do.call structure used in function :
 ### https://stackoverflow.com/questions/20997380/creating-a-summary-statistical-table-from-a-data-frame
 
