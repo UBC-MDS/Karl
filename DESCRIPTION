@@ -10,7 +10,7 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 Depends:
-  R (>= 3.4.2), ggplot2, dplyr
+  R (>= 3.4.2), ggplot2, dplyr, gridExtra
 Suggests: testthat,
     knitr,
     rmarkdown
