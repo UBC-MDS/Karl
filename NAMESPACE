@@ -7,3 +7,5 @@ import(matlib)
 import(ggplot2)
 import(dplyr) 
 import(gridExtra)
+
+importFrom("stats", "fitted", "median", "qnorm", "quantile","residuals", "var")
